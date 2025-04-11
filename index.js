@@ -76,7 +76,7 @@ const textareaContent = document.createElement('textarea');
 textareaContent.style.width = '100%';
 textareaContent.style.height = '80px';
 textareaContent.placeholder = 'Nhập nội dung...';
-textarea.id = 'content'
+textareaContent.id = 'content'
 
 // Tạo textarea
 const textareaWord = document.createElement('textarea');
