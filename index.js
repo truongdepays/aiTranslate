@@ -72,10 +72,18 @@ saveButton.addEventListener('click', () => {
 });
 
 // Tạo textarea
-const textarea = document.createElement('textarea');
-textarea.style.width = '100%';
-textarea.style.height = '80px';
-textarea.placeholder = 'Nhập nội dung...';
+const textareaContent = document.createElement('textarea');
+textareaContent.style.width = '100%';
+textareaContent.style.height = '80px';
+textareaContent.placeholder = 'Nhập nội dung...';
+textarea.id = 'content'
+
+// Tạo textarea
+const textareaWord = document.createElement('textarea');
+textareaWord.style.width = '100%';
+textareaWord.style.height = '80px';
+textareaWord.placeholder = 'Nhập từ ...';
+textareaWord.id = 'word'
 
 // Tạo select chọn ngôn ngữ
 const languageSelect = document.createElement('select');
@@ -134,8 +142,8 @@ sendButton.addEventListener('click', async () => {
         return;
     }
 
-    const text = textarea.value.trim();
-    if (!text) {
+    const textContent = textareaWord.value.trim()
+    if (!textContent) {
         alert('Please enter text to translate.');
         return;
     }
