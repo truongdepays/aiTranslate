@@ -142,14 +142,29 @@ sendButton.addEventListener('click', async () => {
         return;
     }
 
-    const textContent = textareaWord.value.trim()
-    if (!textContent) {
-        alert('Please enter text to translate.');
+    const textContent = textareaContent.value.trim()
+    const textWord = textareaWord.value.trim()
+    if (!textContent && !textWord) {
+        alert('Please enter word or content');
         return;
     }
 
+    let prompt = ''
+
     const targetLanguage = languageSelect.value;
-    const prompt = `Hãy dịch nội dung sau sang ${targetLanguage === 'vi' ? 'tiếng Việt' : 'tiếng Anh'}. Nếu là một từ đơn lẻ, hãy cung cấp nghĩa đầy đủ như một từ điển cambridge. Nếu là một đoạn văn, hãy dịch theo đúng ngữ cảnh:\n\n"${text}"`;
+    if (textWord && textContent) {
+        prompt = `hãy dịch ${textContent} sang ${targetLanguage === 'vi' ? 'tiếng Việt' : 'tiếng Anh'} và cung cấp nghĩa đầy đủ của từ ${textWord} như một từ điển cambridge, giải thích chi tiết ${textWord} trong bối cảnh của câu ${textContent}. giải thích các ngữ pháp xuất hiện trong câu ${textContent}`
+}
+
+if (!textWord && textContent) {
+    prompt = `hãy dịch ${textContent} sang ${targetLanguage === 'vi' ? 'tiếng Việt' : 'tiếng Anh'} . giải thích các ngữ pháp xuất hiện trong câu ${textContent}`
+}
+
+if (textWord && !textContent) {
+    prompt = `hãy dịch ${textWord} sang ${targetLanguage === 'vi' ? 'tiếng Việt' : 'tiếng Anh'} . cung cấp nghĩa đầy đủ của từ ${textWord} như một từ điển cambridge`
+}
+
+    //const prompt = `Hãy dịch nội dung sau sang ${targetLanguage === 'vi' ? 'tiếng Việt' : 'tiếng Anh'}. Nếu là một từ đơn lẻ, hãy cung cấp nghĩa đầy đủ như một từ điển cambridge. Nếu là một đoạn văn, hãy dịch theo đúng ngữ cảnh:\n\n"${text}"`;
 
     // Disable nút Send khi đang gửi request
     sendButton.disabled = true;
@@ -161,32 +176,32 @@ sendButton.addEventListener('click', async () => {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${apiKey}`
-        },
-            body: JSON.stringify({
-                model: GM_getValue('gpt_model', 'gpt-4o-mini'),
-                messages: [{
-                    role: 'user',
-                    content: [{
-                        type: 'text',
-                        text: prompt
-                    }]
-                }],
-                response_format: { type: 'text' },
-                temperature: 1,
-                max_completion_tokens: 2048,
-                top_p: 1,
-                frequency_penalty: 0,
-                presence_penalty: 0,
-                store: false
-            })
-        });
+    },
+        body: JSON.stringify({
+            model: GM_getValue('gpt_model', 'gpt-4o-mini'),
+            messages: [{
+                role: 'user',
+                content: [{
+                    type: 'text',
+                    text: prompt
+                }]
+            }],
+            response_format: { type: 'text' },
+            temperature: 1,
+            max_completion_tokens: 2048,
+            top_p: 1,
+            frequency_penalty: 0,
+            presence_penalty: 0,
+            store: false
+        })
+    });
 
-        const data = await response.json();
-        resultDiv.innerText = data.choices?.[0]?.message?.content || 'No response';
-    } catch (error) {
-        resultDiv.innerText = 'Error occurred while translating.';
-        console.error(error);
-    }
+    const data = await response.json();
+    resultDiv.innerText = data.choices?.[0]?.message?.content || 'No response';
+} catch (error) {
+    resultDiv.innerText = 'Error occurred while translating.';
+    console.error(error);
+}
 
     // Enable lại nút Send sau khi nhận response
     sendButton.disabled = false;
@@ -202,7 +217,8 @@ translateButton.addEventListener('click', () => {
 // Gắn các phần tử vào popup
 popup.appendChild(apiKeyInput);
 popup.appendChild(saveButton);
-popup.appendChild(textarea);
+popup.appendChild(textareaContent);
+popup.appendChild(textareaWord);
 popup.appendChild(languageSelect);
 popup.appendChild(modelSelect);
 popup.appendChild(sendButton);
