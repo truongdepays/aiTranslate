@@ -112,7 +112,7 @@
             #highlight-popup {
                 display: none;
                 position: fixed;
-                bottom: 100px;
+                bottom: 130px;
                 right: 10px;
                 background: white;
                 border: 1px solid #ccc;
