@@ -1,4 +1,17 @@
-const hostname = window.location.hostname;
+// ==UserScript==
+// @name         Highlight + Note Popup (No Reload + Tooltip)
+// @namespace    http://tampermonkey.net/
+// @version      2.0
+// @description  Highlight từ/cụm từ với tooltip, sửa/xóa tức thì không reload. Lưu note theo từng trang web. Popup quản lý trực quan và nhẹ.
+// @author       Bạn
+// @match        *://*/*
+// @grant        GM_addStyle
+// ==/UserScript==
+
+(function () {
+    'use strict';
+
+    const hostname = window.location.hostname;
     const storageKey = `highlight_notes_${hostname}`;
 
     function loadNotes() {
@@ -19,13 +32,20 @@ const hostname = window.location.hostname;
         return ['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT', 'IFRAME'].includes(tag);
     }
 
+    function clearHighlights() {
+        document.querySelectorAll('mark.highlighted-word').forEach(mark => {
+            const parent = mark.parentNode;
+            const text = document.createTextNode(mark.textContent);
+            parent.replaceChild(text, mark);
+            parent.normalize();
+        });
+    }
+
     function highlightTextNodes(root, notes) {
         const words = notes.map(n => escapeRegExp(n.note));
         if (words.length === 0) return;
 
-        // Tạo map từ note => description để dễ tra tooltip
         const descMap = Object.fromEntries(notes.map(n => [n.note.toLowerCase(), n.description]));
-
         const regex = new RegExp(`(${words.join('|')})`, 'gi');
         const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
         let node;
@@ -42,18 +62,14 @@ const hostname = window.location.hostname;
         for (const node of nodesToReplace) {
             const parent = node.parentNode;
             const span = document.createElement('span');
-
-            // Tách từng phần và gắn <mark> có tooltip
             const html = node.nodeValue.replace(regex, (match) => {
                 const desc = descMap[match.toLowerCase()] || '';
                 return `<mark class="highlighted-word" title="${desc}">${match}</mark>`;
             });
-
             span.innerHTML = html;
             parent.replaceChild(span, node);
         }
     }
-
 
     function createUI(notes) {
         const button = document.createElement('button');
@@ -82,7 +98,7 @@ const hostname = window.location.hostname;
         GM_addStyle(`
             #highlight-note-btn {
                 position: fixed;
-                bottom: 200px;
+                bottom: 90px;
                 right: 10px;
                 z-index: 10000;
                 padding: 8px 14px;
@@ -96,7 +112,7 @@ const hostname = window.location.hostname;
             #highlight-popup {
                 display: none;
                 position: fixed;
-                bottom: 260px;
+                bottom: 100px;
                 right: 10px;
                 background: white;
                 border: 1px solid #ccc;
@@ -128,14 +144,12 @@ const hostname = window.location.hostname;
             .highlighted-word {
                 background-color: yellow;
                 font-weight: bold;
+                cursor: help;
             }
             .note-action-btn {
                 margin-right: 5px;
                 padding: 2px 5px;
                 font-size: 12px;
-            }
-            #add-note-btn {
-               background: #e3e3e3
             }
         `);
 
@@ -149,13 +163,12 @@ const hostname = window.location.hostname;
             if (note) {
                 notes.push({ note, description: desc });
                 saveNotes(notes);
-                renderTable(notes); // Cập nhật bảng
-                highlightTextNodes(document.body, [ { note, description: desc } ]); // Highlight tức thì
+                renderTable(notes);
+                highlightTextNodes(document.body, [{ note, description: desc }]);
                 document.getElementById('note-input').value = '';
                 document.getElementById('desc-input').value = '';
             }
         };
-
     }
 
     function renderTable(notes) {
@@ -181,7 +194,9 @@ const hostname = window.location.hostname;
                 if (newNote !== null && newNote.trim() !== '') {
                     notes[index].note = newNote.trim();
                     saveNotes(notes);
-                    location.reload();
+                    clearHighlights();
+                    highlightTextNodes(document.body, notes);
+                    renderTable(notes);
                 }
             };
 
@@ -193,7 +208,12 @@ const hostname = window.location.hostname;
                 if (newDesc !== null) {
                     notes[index].description = newDesc.trim();
                     saveNotes(notes);
-                    location.reload();
+                    document.querySelectorAll('mark.highlighted-word').forEach(mark => {
+                        const word = mark.innerText.toLowerCase();
+                        const desc = notes.find(n => n.note.toLowerCase() === word)?.description || '';
+                        mark.setAttribute('title', desc);
+                    });
+                    renderTable(notes);
                 }
             };
 
@@ -204,7 +224,9 @@ const hostname = window.location.hostname;
                 if (confirm("Bạn có chắc muốn xóa?")) {
                     notes.splice(index, 1);
                     saveNotes(notes);
-                    location.reload();
+                    clearHighlights();
+                    highlightTextNodes(document.body, notes);
+                    renderTable(notes);
                 }
             };
 
@@ -224,3 +246,4 @@ const hostname = window.location.hostname;
         highlightTextNodes(document.body, notes);
         createUI(notes);
     });
+})();
