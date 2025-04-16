@@ -134,6 +134,9 @@ const hostname = window.location.hostname;
                 padding: 2px 5px;
                 font-size: 12px;
             }
+            #add-note-btn {
+               background: #e3e3e3
+            }
         `);
 
         button.onclick = () => {
@@ -146,9 +149,13 @@ const hostname = window.location.hostname;
             if (note) {
                 notes.push({ note, description: desc });
                 saveNotes(notes);
-                location.reload();
+                renderTable(notes); // Cập nhật bảng
+                highlightTextNodes(document.body, [ { note, description: desc } ]); // Highlight tức thì
+                document.getElementById('note-input').value = '';
+                document.getElementById('desc-input').value = '';
             }
         };
+
     }
 
     function renderTable(notes) {
