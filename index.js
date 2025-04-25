@@ -153,15 +153,15 @@ sendButton.addEventListener('click', async () => {
 
     const targetLanguage = languageSelect.value;
     if (textWord && textContent) {
-        prompt = `hãy dịch ${textContent} sang ${targetLanguage === 'vi' ? 'tiếng Việt' : 'tiếng Anh'} và cung cấp nghĩa đầy đủ của từ ${textWord} như một từ điển cambridge, giải thích chi tiết ${textWord} trong bối cảnh của câu ${textContent}. giải thích các ngữ pháp xuất hiện trong câu ${textContent}`
+        prompt = `hãy dịch câu:  "${textContent}" sang ${targetLanguage === 'vi' ? 'tiếng Việt' : 'tiếng Anh'} và cung cấp nghĩa đầy đủ của từ ${textWord} như một từ điển cambridge, giải thích chi tiết ${textWord} trong bối cảnh của câu ${textContent}. giải thích các ngữ pháp xuất hiện trong câu ${textContent}`
 }
 
 if (!textWord && textContent) {
-    prompt = `hãy dịch ${textContent} sang ${targetLanguage === 'vi' ? 'tiếng Việt' : 'tiếng Anh'} . giải thích các ngữ pháp xuất hiện trong câu ${textContent}`
+    prompt = `hãy dịch câu "${textContent}" sang ${targetLanguage === 'vi' ? 'tiếng Việt' : 'tiếng Anh'} . giải thích các ngữ pháp xuất hiện trong câu ${textContent}`
 }
 
 if (textWord && !textContent) {
-    prompt = `hãy dịch ${textWord} sang ${targetLanguage === 'vi' ? 'tiếng Việt' : 'tiếng Anh'} . cung cấp nghĩa đầy đủ của từ ${textWord} như một từ điển cambridge`
+    prompt = `hãy dịch câu "${textWord}" sang ${targetLanguage === 'vi' ? 'tiếng Việt' : 'tiếng Anh'} . cung cấp nghĩa đầy đủ của từ ${textWord} như một từ điển cambridge`
 }
 
     //const prompt = `Hãy dịch nội dung sau sang ${targetLanguage === 'vi' ? 'tiếng Việt' : 'tiếng Anh'}. Nếu là một từ đơn lẻ, hãy cung cấp nghĩa đầy đủ như một từ điển cambridge. Nếu là một đoạn văn, hãy dịch theo đúng ngữ cảnh:\n\n"${text}"`;
