@@ -327,7 +327,7 @@ shadowStyle.textContent = `
         vertical-align: baseline;
         box-sizing: border-box;
     }
-
+    
     /* Main popup container */
     .ai-translator-popup {
         position: fixed;
@@ -349,7 +349,7 @@ shadowStyle.textContent = `
         flex-direction: column;
         pointer-events: auto;
     }
-
+    
     /* Header */
     .ai-translator-header {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -361,7 +361,7 @@ shadowStyle.textContent = `
         border-top-left-radius: 16px;
         border-top-right-radius: 16px;
     }
-
+    
     /* Body */
     .ai-translator-body {
         padding: 20px;
@@ -369,7 +369,7 @@ shadowStyle.textContent = `
         flex: 1;
         min-height: 0;
     }
-
+    
     /* Scrollbar */
     .ai-translator-body::-webkit-scrollbar {
         width: 6px;
@@ -385,7 +385,7 @@ shadowStyle.textContent = `
     .ai-translator-body::-webkit-scrollbar-thumb:hover {
         background: #94a3b8;
     }
-
+    
     /* Form elements */
     .ai-translator-input {
         width: 100%;
@@ -400,12 +400,12 @@ shadowStyle.textContent = `
         box-sizing: border-box;
         background: white;
     }
-
+    
     .ai-translator-input:focus {
         border-color: #667eea;
         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
-
+    
     .ai-translator-textarea {
         width: 100%;
         min-height: 80px;
@@ -421,12 +421,12 @@ shadowStyle.textContent = `
         margin-bottom: 12px;
         background: white;
     }
-
+    
     .ai-translator-textarea:focus {
         border-color: #667eea;
         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
-
+    
     .ai-translator-select {
         width: 100%;
         padding: 12px 16px;
@@ -441,23 +441,23 @@ shadowStyle.textContent = `
         box-sizing: border-box;
         margin-bottom: 12px;
     }
-
+    
     .ai-translator-select:focus {
         border-color: #667eea;
         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
-
+    
     .ai-translator-select-container {
         display: flex;
         gap: 12px;
         margin-bottom: 12px;
     }
-
+    
     .ai-translator-select-container .ai-translator-select {
         width: 50%;
         margin-bottom: 0;
     }
-
+    
     .ai-translator-button {
         width: 100%;
         padding: 12px 20px;
@@ -471,20 +471,20 @@ shadowStyle.textContent = `
         border: none;
         margin-bottom: 16px;
     }
-
+    
     .ai-translator-button:hover {
         transform: translateY(-1px);
     }
-
+    
     .ai-translator-button-save {
         background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
         color: white;
     }
-
+    
     .ai-translator-button-save:hover {
         box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
     }
-
+    
     .ai-translator-button-send {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
@@ -493,11 +493,11 @@ shadowStyle.textContent = `
         font-size: 15px;
         font-weight: 600;
     }
-
+    
     .ai-translator-button-send:hover {
         box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
     }
-
+    
     .ai-translator-result {
         margin-top: 16px;
         padding: 16px;
@@ -513,7 +513,7 @@ shadowStyle.textContent = `
         word-wrap: break-word;
         overflow-wrap: break-word;
     }
-
+    
     /* Floating button */
     .ai-translator-floating {
         position: absolute;
@@ -533,7 +533,7 @@ shadowStyle.textContent = `
         backdrop-filter: blur(10px);
         pointer-events: auto;
     }
-
+    
     .ai-translator-floating:hover {
         transform: translateY(-2px) scale(1.05);
         box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
@@ -663,7 +663,7 @@ shadowSendButton.addEventListener('click', async () => {
     let prompt = ''
     const targetLanguage = shadowLanguageSelect.value;
     const isVietnamese = targetLanguage === 'vi';
-
+    
     if (textWord && textContent) {
         prompt = `Bạn là một chuyên gia dịch thuật và giảng dạy ngôn ngữ. Hãy phân tích và dịch theo format sau:
 
@@ -671,19 +671,20 @@ shadowSendButton.addEventListener('click', async () => {
 Dịch câu: "${textContent}" sang ${isVietnamese ? 'tiếng Việt' : 'English'}
 
 📖 **PHÂN TÍCH TỪ VỰNG: "${textWord}"**
-- Nghĩa chính:
-- Loại từ:
-- Phát âm:
-- Trong ngữ cảnh này:
-- Ví dụ khác:
+- Nghĩa chính: 
+- Loại từ: 
+- Phát âm: 
+- Trong ngữ cảnh này: 
+- Ví dụ khác: 
 
-📝 **PHÂN TÍCH NGỮ PHÁP**
-- Cấu trúc câu:
-- Thì/Thể:
-- Điểm chú ý:
+📝 **PHÂN TÍCH NGỮ PHÁP CỦA CÂU GỐC**
+- Cấu trúc câu gốc: 
+- Thì/Thể trong câu gốc: 
+- Điểm ngữ pháp cần chú ý: 
+- So sánh với ${isVietnamese ? 'tiếng Việt' : 'tiếng Anh'}: 
 
 💡 **GHI CHÚ**
-- Tip ghi nhớ:
+- Tip ghi nhớ: 
 - Lưu ý văn hóa (nếu có):`;
     }
 
@@ -693,15 +694,17 @@ Dịch câu: "${textContent}" sang ${isVietnamese ? 'tiếng Việt' : 'English'
 🔤 **BẢN DỊCH**
 "${textContent}" → ${isVietnamese ? 'Tiếng Việt' : 'English'}
 
-📝 **PHÂN TÍCH NGỮ PHÁP**
-- Cấu trúc câu:
-- Thì/Thể sử dụng:
-- Từ vựng chính:
-- Điểm ngữ pháp đáng chú ý:
+📝 **PHÂN TÍCH NGỮ PHÁP CỦA CÂU GỐC**
+- Cấu trúc câu gốc: 
+- Thì/Thể trong câu gốc: 
+- Từ vựng chính: 
+- Điểm ngữ pháp đáng chú ý trong câu gốc: 
+- So sánh cấu trúc với ${isVietnamese ? 'tiếng Việt' : 'tiếng Anh'}: 
 
 💡 **GIẢI THÍCH**
-- Tại sao dịch như vậy:
-- Các cách diễn đạt khác: `;
+- Tại sao dịch như vậy: 
+- Các cách diễn đạt khác: 
+- Khó khăn khi dịch: `;
     }
 
     if (textWord && !textContent) {
@@ -709,19 +712,24 @@ Dịch câu: "${textContent}" sang ${isVietnamese ? 'tiếng Việt' : 'English'
 
 📖 **TỪ ĐIỂN: "${textWord}"**
 
-**Nghĩa chính:**
+**Phát âm:** /phiên âm IPA/
+
+**Nghĩa gốc (${isVietnamese ? 'English' : 'Tiếng Việt'}):**
 • [Loại từ] Định nghĩa chính
 • [Loại từ] Định nghĩa phụ (nếu có)
-
-**Phát âm:** /phiên âm IPA/
 
 **Dịch sang ${isVietnamese ? 'tiếng Việt' : 'English'}:**
 • Nghĩa 1
 • Nghĩa 2 (nếu có)
 
-**Ví dụ:**
-• Example 1 → Dịch
-• Example 2 → Dịch
+**Ví dụ câu gốc:**
+• Example 1 → Dịch sang ${isVietnamese ? 'tiếng Việt' : 'English'}
+• Example 2 → Dịch sang ${isVietnamese ? 'tiếng Việt' : 'English'}
+
+**Ngữ pháp:**
+• Cách sử dụng trong câu
+• Vị trí trong câu
+• Biến thể (nếu có)
 
 **Collocations (Từ đi cùng):**
 • Common phrases...
@@ -736,7 +744,7 @@ Dịch câu: "${textContent}" sang ${isVietnamese ? 'tiếng Việt' : 'English'
     shadowSendButton.disabled = true;
     shadowSendButton.textContent = "⏳ Translating...";
     shadowSendButton.style.opacity = "0.6";
-
+    
     // Hiển thị loading trong result (an toàn)
     shadowResultDiv.textContent = '';
     const loadingDiv = document.createElement('div');
@@ -774,10 +782,10 @@ Dịch câu: "${textContent}" sang ${isVietnamese ? 'tiếng Việt' : 'English'
 
     const data = await response.json();
     const content = data.choices?.[0]?.message?.content || 'No response';
-
+    
     // Hiển thị kết quả an toàn (không dùng innerHTML)
     shadowResultDiv.textContent = '';
-
+    
     // Xử lý content với line breaks an toàn
     const contentLines = content.split('\n');
     contentLines.forEach((line, index) => {
@@ -785,12 +793,12 @@ Dịch câu: "${textContent}" sang ${isVietnamese ? 'tiếng Việt' : 'English'
         lineElement.textContent = line || '\u00A0'; // Non-breaking space cho dòng trống
         shadowResultDiv.appendChild(lineElement);
     });
-
+    
     // Auto scroll trong shadow popup body để thấy result
     setTimeout(() => {
         shadowBody.scrollTop = shadowBody.scrollHeight;
     }, 200);
-
+    
 } catch (error) {
     shadowResultDiv.textContent = '';
     const errorDiv = document.createElement('div');
@@ -811,6 +819,24 @@ Dịch câu: "${textContent}" sang ${isVietnamese ? 'tiếng Việt' : 'English'
 translateButton.addEventListener('click', () => {
     if (shadowPopup.style.display === 'none' || shadowPopup.style.display === '') {
         shadowPopup.style.display = 'flex';
+        
+        // Nếu có text được chọn, áp dụng logic tương tự
+        if (selectedText && selectedText.trim()) {
+            const trimmedText = selectedText.trim();
+            const wordCount = trimmedText.split(/\s+/).filter(word => word.length > 0).length;
+            
+            if (wordCount === 1 && !trimmedText.includes('.') && !trimmedText.includes('!') && !trimmedText.includes('?')) {
+                shadowTextareaWord.value = trimmedText;
+                shadowTextareaContent.value = '';
+                shadowTextareaWord.focus();
+                console.log('Main button: Single word detected, filled into word field:', trimmedText);
+            } else {
+                shadowTextareaContent.value = trimmedText;
+                shadowTextareaWord.value = '';
+                shadowTextareaContent.focus();
+                console.log('Main button: Multiple words/sentence detected, filled into content field:', trimmedText);
+            }
+        }
     } else {
         shadowPopup.style.display = 'none';
     }
@@ -862,34 +888,34 @@ let selectedText = '';
 // Xử lý sự kiện chọn text với shadow floating button
 document.addEventListener('mouseup', (event) => {
     console.log('mouseup event triggered');
-
+    
     // Delay nhỏ để đảm bảo selection đã hoàn tất
     setTimeout(() => {
         const selection = window.getSelection();
         const text = selection.toString().trim();
-
+        
         console.log('Selected text:', text);
-
+        
         if (text.length > 0 && selection.rangeCount > 0) {
             selectedText = text;
-
+            
             try {
                 // Lấy vị trí của selection
                 const range = selection.getRangeAt(0);
                 const rect = range.getBoundingClientRect();
-
+                
                 console.log('Selection rect:', rect);
-
+                
                 // Định vị shadow floating button gần với text được chọn
                 const left = rect.left + window.scrollX;
                 const top = rect.bottom + window.scrollY + 5;
-
+                
                 shadowFloatingButton.style.left = left + 'px';
                 shadowFloatingButton.style.top = top + 'px';
                 shadowFloatingButton.style.display = 'block';
-
+                
                 console.log('Shadow floating button positioned at:', { left, top });
-
+                
                 // Auto hide sau 5 giây nếu không click
                 setTimeout(() => {
                     if (shadowFloatingButton.style.display === 'block') {
@@ -920,22 +946,34 @@ shadowFloatingButton.addEventListener('click', (event) => {
     console.log('Shadow floating translate button clicked');
     event.preventDefault();
     event.stopPropagation();
-
+    
     // Mở shadow popup
     shadowPopup.style.display = 'flex';
-
-    // Điền text đã chọn vào shadow textarea content
-    shadowTextareaContent.value = selectedText;
-
+    
+    // Logic điền vào ô phù hợp dựa trên số từ
+    const trimmedText = selectedText.trim();
+    const wordCount = trimmedText.split(/\s+/).filter(word => word.length > 0).length;
+    
+    if (wordCount === 1 && !trimmedText.includes('.') && !trimmedText.includes('!') && !trimmedText.includes('?')) {
+        // Chỉ 1 từ và không có dấu câu → điền vào ô "Nhập từ"
+        shadowTextareaWord.value = trimmedText;
+        shadowTextareaContent.value = '';
+        shadowTextareaWord.focus();
+        console.log('Single word detected, filled into word field:', trimmedText);
+    } else {
+        // Nhiều từ hoặc có dấu câu → điền vào ô "Nhập nội dung"
+        shadowTextareaContent.value = trimmedText;
+        shadowTextareaWord.value = '';
+        shadowTextareaContent.focus();
+        console.log('Multiple words/sentence detected, filled into content field:', trimmedText);
+    }
+    
     // Ẩn shadow floating button
     shadowFloatingButton.style.display = 'none';
-
+    
     // Clear selection
     window.getSelection().removeAllRanges();
-
-    // Focus vào shadow textarea content
-    shadowTextareaContent.focus();
-
+    
     console.log('Shadow popup opened with selected text:', selectedText);
 });
 
