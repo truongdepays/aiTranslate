@@ -762,7 +762,7 @@ Dịch câu: "${textContent}" sang ${isVietnamese ? 'tiếng Việt' : 'English'
                 'Authorization': `Bearer ${apiKey}`
     },
         body: JSON.stringify({
-            model: GM_getValue('gpt_model', 'gpt-4o-mini'),
+            model: GM_getValue('gpt_model', 'gpt-5-nano'),
             messages: [{
                 role: 'user',
                 content: [{
