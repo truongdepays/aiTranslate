@@ -222,15 +222,32 @@ Object.assign(modelSelect.style, selectBaseStyle);
 modelSelect.style.width = '50%';
 modelSelect.style.marginBottom = '0';
 
+// GPT-5 Models (2025)
+const option5Nano = document.createElement('option');
+option5Nano.value = 'gpt-5-nano';
+option5Nano.textContent = '🔥 GPT-5 Nano';
+option5Nano.selected = true;
+
+const option5Mini = document.createElement('option');
+option5Mini.value = 'gpt-5-mini';
+option5Mini.textContent = '⚡ GPT-5 Mini';
+
+const option5 = document.createElement('option');
+option5.value = 'gpt-5';
+option5.textContent = '🚀 GPT-5';
+
+// GPT-4 Models (legacy)
 const option4oMini = document.createElement('option');
-option4oMini.value = 'gpt-5-nano';
-option4oMini.textContent = '⚡ GPT-5 Nano';
-option4oMini.selected = true;
+option4oMini.value = 'gpt-4o-mini';
+option4oMini.textContent = '⚡ GPT-4o Mini';
 
 const option4o = document.createElement('option');
-option4o.value = 'gpt-5-mini';
-option4o.textContent = '🚀 GPT-5-Mini';
+option4o.value = 'gpt-4o';
+option4o.textContent = '🚀 GPT-4o';
 
+modelSelect.appendChild(option5Nano);
+modelSelect.appendChild(option5Mini);
+modelSelect.appendChild(option5);
 modelSelect.appendChild(option4oMini);
 modelSelect.appendChild(option4o);
 
@@ -327,7 +344,7 @@ shadowStyle.textContent = `
         vertical-align: baseline;
         box-sizing: border-box;
     }
-    
+
     /* Main popup container */
     .ai-translator-popup {
         position: fixed;
@@ -349,7 +366,7 @@ shadowStyle.textContent = `
         flex-direction: column;
         pointer-events: auto;
     }
-    
+
     /* Header */
     .ai-translator-header {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -361,7 +378,7 @@ shadowStyle.textContent = `
         border-top-left-radius: 16px;
         border-top-right-radius: 16px;
     }
-    
+
     /* Body */
     .ai-translator-body {
         padding: 20px;
@@ -369,7 +386,7 @@ shadowStyle.textContent = `
         flex: 1;
         min-height: 0;
     }
-    
+
     /* Scrollbar */
     .ai-translator-body::-webkit-scrollbar {
         width: 6px;
@@ -385,7 +402,7 @@ shadowStyle.textContent = `
     .ai-translator-body::-webkit-scrollbar-thumb:hover {
         background: #94a3b8;
     }
-    
+
     /* Form elements */
     .ai-translator-input {
         width: 100%;
@@ -400,12 +417,12 @@ shadowStyle.textContent = `
         box-sizing: border-box;
         background: white;
     }
-    
+
     .ai-translator-input:focus {
         border-color: #667eea;
         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
-    
+
     .ai-translator-textarea {
         width: 100%;
         min-height: 80px;
@@ -421,12 +438,12 @@ shadowStyle.textContent = `
         margin-bottom: 12px;
         background: white;
     }
-    
+
     .ai-translator-textarea:focus {
         border-color: #667eea;
         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
-    
+
     .ai-translator-select {
         width: 100%;
         padding: 12px 16px;
@@ -441,23 +458,23 @@ shadowStyle.textContent = `
         box-sizing: border-box;
         margin-bottom: 12px;
     }
-    
+
     .ai-translator-select:focus {
         border-color: #667eea;
         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
-    
+
     .ai-translator-select-container {
         display: flex;
         gap: 12px;
         margin-bottom: 12px;
     }
-    
+
     .ai-translator-select-container .ai-translator-select {
         width: 50%;
         margin-bottom: 0;
     }
-    
+
     .ai-translator-button {
         width: 100%;
         padding: 12px 20px;
@@ -471,20 +488,20 @@ shadowStyle.textContent = `
         border: none;
         margin-bottom: 16px;
     }
-    
+
     .ai-translator-button:hover {
         transform: translateY(-1px);
     }
-    
+
     .ai-translator-button-save {
         background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
         color: white;
     }
-    
+
     .ai-translator-button-save:hover {
         box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
     }
-    
+
     .ai-translator-button-send {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
@@ -493,11 +510,11 @@ shadowStyle.textContent = `
         font-size: 15px;
         font-weight: 600;
     }
-    
+
     .ai-translator-button-send:hover {
         box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
     }
-    
+
     .ai-translator-result {
         margin-top: 16px;
         padding: 16px;
@@ -513,7 +530,7 @@ shadowStyle.textContent = `
         word-wrap: break-word;
         overflow-wrap: break-word;
     }
-    
+
     /* Floating button */
     .ai-translator-floating {
         position: absolute;
@@ -533,7 +550,7 @@ shadowStyle.textContent = `
         backdrop-filter: blur(10px);
         pointer-events: auto;
     }
-    
+
     .ai-translator-floating:hover {
         transform: translateY(-2px) scale(1.05);
         box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
@@ -588,18 +605,86 @@ shadowLanguageSelect.appendChild(shadowOptionEn);
 
 const shadowModelSelect = document.createElement('select');
 shadowModelSelect.className = 'ai-translator-select';
+
+// GPT-5 Models (2025)
+const shadowOption5Nano = document.createElement('option');
+shadowOption5Nano.value = 'gpt-5-nano';
+shadowOption5Nano.textContent = '🔥 GPT-5 Nano';
+shadowOption5Nano.selected = true;
+
+const shadowOption5Mini = document.createElement('option');
+shadowOption5Mini.value = 'gpt-5-mini';
+shadowOption5Mini.textContent = '⚡ GPT-5 Mini';
+
+const shadowOption5 = document.createElement('option');
+shadowOption5.value = 'gpt-5';
+shadowOption5.textContent = '🚀 GPT-5';
+
+// GPT-4 Models (legacy)
 const shadowOption4oMini = document.createElement('option');
-shadowOption4oMini.value = 'gpt-5-nano';
-shadowOption4oMini.textContent = '⚡ GPT 5 Nano';
-shadowOption4oMini.selected = true;
+shadowOption4oMini.value = 'gpt-4o-mini';
+shadowOption4oMini.textContent = '⚡ GPT-4o Mini';
+
 const shadowOption4o = document.createElement('option');
-shadowOption4o.value = 'gpt-5-mini';
-shadowOption4o.textContent = '🚀 GPT-5-Mini';
+shadowOption4o.value = 'gpt-4o';
+shadowOption4o.textContent = '🚀 GPT-4o';
+
+shadowModelSelect.appendChild(shadowOption5Nano);
+shadowModelSelect.appendChild(shadowOption5Mini);
+shadowModelSelect.appendChild(shadowOption5);
 shadowModelSelect.appendChild(shadowOption4oMini);
 shadowModelSelect.appendChild(shadowOption4o);
 
 shadowSelectContainer.appendChild(shadowLanguageSelect);
 shadowSelectContainer.appendChild(shadowModelSelect);
+
+// GPT-5 Parameters Container (initially hidden)
+const shadowGPT5Container = document.createElement('div');
+shadowGPT5Container.className = 'ai-translator-select-container';
+shadowGPT5Container.style.display = 'none';
+
+// Verbosity Select
+const shadowVerbositySelect = document.createElement('select');
+shadowVerbositySelect.className = 'ai-translator-select';
+const verbosityLow = document.createElement('option');
+verbosityLow.value = 'low';
+verbosityLow.textContent = '📝 Short';
+const verbosityMedium = document.createElement('option');
+verbosityMedium.value = 'medium';
+verbosityMedium.textContent = '📖 Medium';
+verbosityMedium.selected = true;
+const verbosityHigh = document.createElement('option');
+verbosityHigh.value = 'high';
+verbosityHigh.textContent = '📚 Detailed';
+shadowVerbositySelect.appendChild(verbosityLow);
+shadowVerbositySelect.appendChild(verbosityMedium);
+shadowVerbositySelect.appendChild(verbosityHigh);
+
+// Reasoning Effort Select
+const shadowReasoningSelect = document.createElement('select');
+shadowReasoningSelect.className = 'ai-translator-select';
+const reasoningMinimal = document.createElement('option');
+reasoningMinimal.value = 'minimal';
+reasoningMinimal.textContent = '⚡ Fast';
+const reasoningStandard = document.createElement('option');
+reasoningStandard.value = 'standard';
+reasoningStandard.textContent = '🧠 Standard';
+reasoningStandard.selected = true;
+shadowReasoningSelect.appendChild(reasoningMinimal);
+shadowReasoningSelect.appendChild(reasoningStandard);
+
+shadowGPT5Container.appendChild(shadowVerbositySelect);
+shadowGPT5Container.appendChild(shadowReasoningSelect);
+
+// Show/hide GPT-5 parameters based on selected model
+shadowModelSelect.addEventListener('change', () => {
+    const isGPT5 = shadowModelSelect.value.startsWith('gpt-5');
+    shadowGPT5Container.style.display = isGPT5 ? 'flex' : 'none';
+});
+
+// Initial check
+const initialIsGPT5 = shadowModelSelect.value.startsWith('gpt-5');
+shadowGPT5Container.style.display = initialIsGPT5 ? 'flex' : 'none';
 
 const shadowSendButton = document.createElement('button');
 shadowSendButton.textContent = '🚀 Translate Now';
@@ -627,6 +712,7 @@ shadowBody.appendChild(shadowSaveButton);
 shadowBody.appendChild(shadowTextareaContent);
 shadowBody.appendChild(shadowTextareaWord);
 shadowBody.appendChild(shadowSelectContainer);
+shadowBody.appendChild(shadowGPT5Container);
 shadowBody.appendChild(shadowSendButton);
 shadowBody.appendChild(shadowResultDiv);
 
@@ -663,7 +749,7 @@ shadowSendButton.addEventListener('click', async () => {
     let prompt = ''
     const targetLanguage = shadowLanguageSelect.value;
     const isVietnamese = targetLanguage === 'vi';
-    
+
     if (textWord && textContent) {
         prompt = `Bạn là một chuyên gia dịch thuật và giảng dạy ngôn ngữ. Hãy phân tích và dịch theo format sau:
 
@@ -671,20 +757,20 @@ shadowSendButton.addEventListener('click', async () => {
 Dịch câu: "${textContent}" sang ${isVietnamese ? 'tiếng Việt' : 'English'}
 
 📖 **PHÂN TÍCH TỪ VỰNG: "${textWord}"**
-- Nghĩa chính: 
-- Loại từ: 
-- Phát âm: 
-- Trong ngữ cảnh này: 
-- Ví dụ khác: 
+- Nghĩa chính:
+- Loại từ:
+- Phát âm:
+- Trong ngữ cảnh này:
+- Ví dụ khác:
 
 📝 **PHÂN TÍCH NGỮ PHÁP CỦA CÂU GỐC**
-- Cấu trúc câu gốc: 
-- Thì/Thể trong câu gốc: 
-- Điểm ngữ pháp cần chú ý: 
-- So sánh với ${isVietnamese ? 'tiếng Việt' : 'tiếng Anh'}: 
+- Cấu trúc câu gốc:
+- Thì/Thể trong câu gốc:
+- Điểm ngữ pháp cần chú ý:
+- So sánh với ${isVietnamese ? 'tiếng Việt' : 'tiếng Anh'}:
 
 💡 **GHI CHÚ**
-- Tip ghi nhớ: 
+- Tip ghi nhớ:
 - Lưu ý văn hóa (nếu có):`;
     }
 
@@ -695,15 +781,15 @@ Dịch câu: "${textContent}" sang ${isVietnamese ? 'tiếng Việt' : 'English'
 "${textContent}" → ${isVietnamese ? 'Tiếng Việt' : 'English'}
 
 📝 **PHÂN TÍCH NGỮ PHÁP CỦA CÂU GỐC**
-- Cấu trúc câu gốc: 
-- Thì/Thể trong câu gốc: 
-- Từ vựng chính: 
-- Điểm ngữ pháp đáng chú ý trong câu gốc: 
-- So sánh cấu trúc với ${isVietnamese ? 'tiếng Việt' : 'tiếng Anh'}: 
+- Cấu trúc câu gốc:
+- Thì/Thể trong câu gốc:
+- Từ vựng chính:
+- Điểm ngữ pháp đáng chú ý trong câu gốc:
+- So sánh cấu trúc với ${isVietnamese ? 'tiếng Việt' : 'tiếng Anh'}:
 
 💡 **GIẢI THÍCH**
-- Tại sao dịch như vậy: 
-- Các cách diễn đạt khác: 
+- Tại sao dịch như vậy:
+- Các cách diễn đạt khác:
 - Khó khăn khi dịch: `;
     }
 
@@ -744,7 +830,7 @@ Dịch câu: "${textContent}" sang ${isVietnamese ? 'tiếng Việt' : 'English'
     shadowSendButton.disabled = true;
     shadowSendButton.textContent = "⏳ Translating...";
     shadowSendButton.style.opacity = "0.6";
-    
+
     // Hiển thị loading trong result (an toàn)
     shadowResultDiv.textContent = '';
     const loadingDiv = document.createElement('div');
@@ -755,50 +841,77 @@ Dịch câu: "${textContent}" sang ${isVietnamese ? 'tiếng Việt' : 'English'
     shadowResultDiv.appendChild(loadingDiv);
 
     try {
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        const selectedModel = shadowModelSelect.value || 'gpt-5-nano';
+        const isGPT5Model = selectedModel.startsWith('gpt-5');
+
+        // Use Responses API for GPT-5 models, chat/completions for GPT-4
+        const apiEndpoint = isGPT5Model
+            ? 'https://api.openai.com/v1/responses'
+            : 'https://api.openai.com/v1/chat/completions';
+
+        let requestBody;
+
+        if (isGPT5Model) {
+            // GPT-5 Responses API format (simplified)
+            requestBody = {
+                model: selectedModel,
+                input: prompt,
+            };
+        } else {
+            // GPT-4 Chat Completions API format
+            requestBody = {
+                model: selectedModel,
+                messages: [{
+                    role: 'user',
+                    content: prompt
+                }],
+                temperature: 1,
+                max_tokens: 2048,
+                top_p: 1,
+                frequency_penalty: 0,
+                presence_penalty: 0,
+                response_format: { type: 'text' }
+            };
+        }
+
+        const response = await fetch(apiEndpoint, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${apiKey}`
-    },
-        body: JSON.stringify({
-            model: GM_getValue('gpt_model', 'gpt-5-nano'),
-            messages: [{
-                role: 'user',
-                content: [{
-                    type: 'text',
-                    text: prompt
-                }]
-            }],
-            response_format: { type: 'text' },
-            temperature: 1,
-            max_completion_tokens: 2048,
-            top_p: 1,
-            frequency_penalty: 0,
-            presence_penalty: 0,
-            store: false
-        })
-    });
+            },
+            body: JSON.stringify(requestBody)
+        });
 
     const data = await response.json();
-    const content = data.choices?.[0]?.message?.content || 'No response';
-    
+    // Handle different response formats for GPT-5 (Responses API) vs GPT-4 (Chat Completions API)
+    let content = 'No response';
+
+    if (isGPT5Model) {
+        // GPT-5 Responses API format: find message type in output array
+        const messageOutput = data.output?.find(item => item.type === 'message');
+        content = messageOutput?.content?.[0]?.text || 'No response';
+    } else {
+        // GPT-4 Chat Completions API format
+        content = data.choices?.[0]?.message?.content || 'No response';
+    }
+
     // Hiển thị kết quả an toàn (không dùng innerHTML)
     shadowResultDiv.textContent = '';
-    
+
     // Xử lý content với line breaks an toàn
     const contentLines = content.split('\n');
-    contentLines.forEach((line, index) => {
+    contentLines.forEach((line) => {
         const lineElement = document.createElement('div');
         lineElement.textContent = line || '\u00A0'; // Non-breaking space cho dòng trống
         shadowResultDiv.appendChild(lineElement);
     });
-    
+
     // Auto scroll trong shadow popup body để thấy result
     setTimeout(() => {
         shadowBody.scrollTop = shadowBody.scrollHeight;
     }, 200);
-    
+
 } catch (error) {
     shadowResultDiv.textContent = '';
     const errorDiv = document.createElement('div');
@@ -819,12 +932,12 @@ Dịch câu: "${textContent}" sang ${isVietnamese ? 'tiếng Việt' : 'English'
 translateButton.addEventListener('click', () => {
     if (shadowPopup.style.display === 'none' || shadowPopup.style.display === '') {
         shadowPopup.style.display = 'flex';
-        
+
         // Nếu có text được chọn, áp dụng logic tương tự
         if (selectedText && selectedText.trim()) {
             const trimmedText = selectedText.trim();
             const wordCount = trimmedText.split(/\s+/).filter(word => word.length > 0).length;
-            
+
             if (wordCount === 1 && !trimmedText.includes('.') && !trimmedText.includes('!') && !trimmedText.includes('?')) {
                 shadowTextareaWord.value = trimmedText;
                 shadowTextareaContent.value = '';
@@ -888,34 +1001,34 @@ let selectedText = '';
 // Xử lý sự kiện chọn text với shadow floating button
 document.addEventListener('mouseup', (event) => {
     console.log('mouseup event triggered');
-    
+
     // Delay nhỏ để đảm bảo selection đã hoàn tất
     setTimeout(() => {
         const selection = window.getSelection();
         const text = selection.toString().trim();
-        
+
         console.log('Selected text:', text);
-        
+
         if (text.length > 0 && selection.rangeCount > 0) {
             selectedText = text;
-            
+
             try {
                 // Lấy vị trí của selection
                 const range = selection.getRangeAt(0);
                 const rect = range.getBoundingClientRect();
-                
+
                 console.log('Selection rect:', rect);
-                
+
                 // Định vị shadow floating button gần với text được chọn
                 const left = rect.left + window.scrollX;
                 const top = rect.bottom + window.scrollY + 5;
-                
+
                 shadowFloatingButton.style.left = left + 'px';
                 shadowFloatingButton.style.top = top + 'px';
                 shadowFloatingButton.style.display = 'block';
-                
+
                 console.log('Shadow floating button positioned at:', { left, top });
-                
+
                 // Auto hide sau 5 giây nếu không click
                 setTimeout(() => {
                     if (shadowFloatingButton.style.display === 'block') {
@@ -934,11 +1047,9 @@ document.addEventListener('mouseup', (event) => {
 });
 
 // Ẩn shadow floating button khi click vào chỗ khác
-document.addEventListener('click', (event) => {
-    if (event.target !== shadowFloatingButton) {
-        shadowFloatingButton.style.display = 'none';
-        console.log('Hiding shadow floating button due to outside click');
-    }
+document.addEventListener('click', () => {
+    shadowFloatingButton.style.display = 'none';
+    console.log('Hiding shadow floating button due to outside click');
 });
 
 // Xử lý click vào shadow floating button
@@ -946,14 +1057,14 @@ shadowFloatingButton.addEventListener('click', (event) => {
     console.log('Shadow floating translate button clicked');
     event.preventDefault();
     event.stopPropagation();
-    
+
     // Mở shadow popup
     shadowPopup.style.display = 'flex';
-    
+
     // Logic điền vào ô phù hợp dựa trên số từ
     const trimmedText = selectedText.trim();
     const wordCount = trimmedText.split(/\s+/).filter(word => word.length > 0).length;
-    
+
     if (wordCount === 1 && !trimmedText.includes('.') && !trimmedText.includes('!') && !trimmedText.includes('?')) {
         // Chỉ 1 từ và không có dấu câu → điền vào ô "Nhập từ"
         shadowTextareaWord.value = trimmedText;
@@ -967,13 +1078,13 @@ shadowFloatingButton.addEventListener('click', (event) => {
         shadowTextareaContent.focus();
         console.log('Multiple words/sentence detected, filled into content field:', trimmedText);
     }
-    
+
     // Ẩn shadow floating button
     shadowFloatingButton.style.display = 'none';
-    
+
     // Clear selection
     window.getSelection().removeAllRanges();
-    
+
     console.log('Shadow popup opened with selected text:', selectedText);
 });
 
