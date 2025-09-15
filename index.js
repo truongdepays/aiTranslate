@@ -45,7 +45,7 @@ const popup = document.createElement('div');
 popup.style.position = 'fixed';
 popup.style.bottom = '70px';
 popup.style.right = '20px';
-popup.style.width = '450px';
+popup.style.width = '1200px';
 popup.style.maxHeight = '85vh';
 popup.style.backgroundColor = '#ffffff';
 popup.style.boxShadow = '0 8px 32px rgba(0,0,0,0.12)';
@@ -350,7 +350,7 @@ shadowStyle.textContent = `
         position: fixed;
         bottom: 70px;
         right: 20px;
-        width: 450px;
+        width: 1200px;
         max-height: 85vh;
         background-color: #ffffff;
         box-shadow: 0 8px 32px rgba(0,0,0,0.12);
