@@ -589,12 +589,12 @@ shadowLanguageSelect.appendChild(shadowOptionEn);
 const shadowModelSelect = document.createElement('select');
 shadowModelSelect.className = 'ai-translator-select';
 const shadowOption4oMini = document.createElement('option');
-shadowOption4oMini.value = 'gpt-4o-mini';
-shadowOption4oMini.textContent = '⚡ GPT-4o Mini';
+shadowOption4oMini.value = 'gpt-5-nano';
+shadowOption4oMini.textContent = '⚡ GPT 5 Nano';
 shadowOption4oMini.selected = true;
 const shadowOption4o = document.createElement('option');
-shadowOption4o.value = 'gpt-4o';
-shadowOption4o.textContent = '🚀 GPT-4o';
+shadowOption4o.value = 'gpt-5-mini';
+shadowOption4o.textContent = '🚀 GPT-5-Mini';
 shadowModelSelect.appendChild(shadowOption4oMini);
 shadowModelSelect.appendChild(shadowOption4o);
 
