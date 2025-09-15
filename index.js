@@ -223,13 +223,13 @@ modelSelect.style.width = '50%';
 modelSelect.style.marginBottom = '0';
 
 const option4oMini = document.createElement('option');
-option4oMini.value = 'gpt-4o-mini';
-option4oMini.textContent = '⚡ GPT-4o Mini';
+option4oMini.value = 'gpt-5-nano';
+option4oMini.textContent = '⚡ GPT-5 Nano';
 option4oMini.selected = true;
 
 const option4o = document.createElement('option');
-option4o.value = 'gpt-4o';
-option4o.textContent = '🚀 GPT-4o';
+option4o.value = 'gpt-5-mini';
+option4o.textContent = '🚀 GPT-5-Mini';
 
 modelSelect.appendChild(option4oMini);
 modelSelect.appendChild(option4o);
